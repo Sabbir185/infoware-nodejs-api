@@ -10,7 +10,7 @@ function notFoundError(req, res, next) {
 function errorHandler(err, req, res, next) {
     const errors = process.env.NODE_ENV === 'development' ? err : { message: err.message };
 
-    res.status(err.status || 500).json(errors);
+    res.status(err.status || 500).json({error: errors.message, stack: errors.stack});
 
 }
 

@@ -7,8 +7,6 @@ const productValidator = [
     check('productName')
         .isLength({ min: 3 })
         .withMessage('Name is required')
-        .isAlpha('en-US', { ignore: ' -' })
-        .withMessage('Name must not container anything other than Alphabet')
         .trim(),
     check('description')
         .isLength({ min: 5 })
@@ -27,7 +25,7 @@ const productValidatorHelper = (req, res, next) => {
         next();
     } else {
         // remove uploaded file, if error
-        if (req.files.length > 0) {
+        if (req.files) {
             const { filename } = req.files[0];
             fs.unlink(path.join(__dirname), `../../public/products/${filename}`, (err) => {
                 if (err) {

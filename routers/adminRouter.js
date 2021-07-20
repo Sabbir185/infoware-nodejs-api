@@ -18,7 +18,7 @@ const router = express.Router();
 router.post("/addAccount", avatarUpload, AdminValidator, AdminValidatorHelper, addAdmin);
 
 // add product
-router.post('/addProducts', imageUpload, productValidator,productValidatorHelper, addProduct);
+router.post('/addProducts', imageUpload, productValidator, productValidatorHelper, addProduct);
 
 
 // module export
