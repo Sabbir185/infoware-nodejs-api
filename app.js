@@ -9,7 +9,8 @@ const path = require('path');
 const { notFoundError, errorHandler } = require('./middlewares/common/errorHandling');
 const adminRouter = require('./routers/adminRouter');
 const allProduct = require('./routers/allProductShow');
-const userRouter = require('./routers/userRouter')
+const userRouter = require('./routers/userRouter');
+const orderProduct = require('./routers/orderRouter');
 
 // app initialization
 const app = express();
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', allProduct);
 app.use('/admin', adminRouter);
 app.use('/user', userRouter);
+app.use('/order', orderProduct);
 
 // 404 not found error
 app.use(notFoundError);
