@@ -7,6 +7,7 @@ const path = require('path');
 // internal import
 const { notFoundError, errorHandler } = require('./middlewares/common/errorHandling');
 const adminRouter = require('./routers/adminRouter');
+const allProduct = require('./routers/allProductShow');
 
 // app initialization
 const app = express();
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // router
+app.use('/', allProduct);
 app.use('/admin', adminRouter);
 
 // 404 not found error
