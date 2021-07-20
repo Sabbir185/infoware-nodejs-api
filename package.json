@@ -1,0 +1,24 @@
+{
+  "name": "infoware-nodejs-dev",
+  "version": "1.0.0",
+  "description": "nodejs assignment",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon app.js",
+    "production": "NODE_ENV=production node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sabbir ahmmed\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[\u001b[CS\u001b[C\u001b[C\u001b Sabbir",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "http-errors": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.3",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.12"
+  }
+}
