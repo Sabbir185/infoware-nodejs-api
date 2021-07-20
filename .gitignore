@@ -1,4 +1,9 @@
 node_modules/
-public/products/
-public/admins/
-public/users/
+
+# for verification purpose I upload my public and .env file on github
+
+# public/products/
+# public/admins/
+# public/users/
+
+# .env
