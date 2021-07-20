@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 // model import
 const AddProducts = require('../models/AddProducts');
 
-// add user
+// add product
 async function addProduct(req, res, next) {
     let newProducts;
 
@@ -19,7 +19,7 @@ async function addProduct(req, res, next) {
         })
     }
 
-    // save user or send error
+    // save product or send error
     try {
         const result = await newProducts.save();
         res.status(200).json({

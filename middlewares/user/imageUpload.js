@@ -1,8 +1,8 @@
 const uploader = require('../../utilities/singleFileUpload');
 
-function avatarUpload(req, res, next) {
+function imageUpload(req, res, next) {
     const upload = uploader(
-        'admins',
+        'users',
         ['image/jpeg', 'image/jpg', 'image/png'],
         5000000,
         'Only .png .jpg $ .jpeg files are allowed'
@@ -25,4 +25,4 @@ function avatarUpload(req, res, next) {
 }
 
 
-module.exports = avatarUpload;
+module.exports = imageUpload;

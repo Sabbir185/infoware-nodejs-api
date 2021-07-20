@@ -2,12 +2,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+var cors = require('cors')
 const path = require('path');
 
 // internal import
 const { notFoundError, errorHandler } = require('./middlewares/common/errorHandling');
 const adminRouter = require('./routers/adminRouter');
 const allProduct = require('./routers/allProductShow');
+const userRouter = require('./routers/userRouter')
 
 // app initialization
 const app = express();
@@ -24,6 +26,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
 // request parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // static file
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // router
 app.use('/', allProduct);
 app.use('/admin', adminRouter);
+app.use('/user', userRouter);
 
 // 404 not found error
 app.use(notFoundError);

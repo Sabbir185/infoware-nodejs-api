@@ -1,32 +1,32 @@
 const bcrypt = require('bcrypt');
 
 // model import
-const Admin = require('../models/Admin');
+const User = require('../models/Users');
 
-// add admin
-async function addAdmin(req, res, next) {
-    let newAdmin;
+// add user
+async function addUser(req, res, next) {
+    let newUser;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     if (req.files && req.files.length > 0) {
 
-        newAdmin = new Admin({
+        newUser = new User({
             ...req.body,
             avatar: req.files[0].filename,
             password: hashedPassword
         })
     } else {
-        newAdmin = new Admin({
+        newUser = new User({
             ...req.body,
             password: hashedPassword
         })
     }
 
-    // save admin or send error
+    // save user or send error
     try {
-        const result = newAdmin.save();
+        const result = newUser.save();
         res.status(200).json({
-            message: 'Admin was created successfully!'
+            message: 'User was created successfully!'
         })
     } catch (err) {
         res.status(500).json({
@@ -42,5 +42,5 @@ async function addAdmin(req, res, next) {
 
 
 module.exports = {
-    addAdmin
+    addUser
 }
