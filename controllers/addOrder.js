@@ -1,25 +1,33 @@
 
 // model import
 const Order = require('../models/Order');
+const User = require('../models/Users');
 
 // add order
-async function addOrder(req, res, next) {
-    let newOrder = new Order({...req.body});
-    // save order or send error
-    try {
-        const result = await newOrder.save();
-        res.status(200).json({
-            message: 'Order successfully done!'
-        })
-    } catch (err) {
-        res.status(500).json({
-            errors: {
-                common: {
-                    msg: 'Order failed!'
-                }
+function addOrder(req, res, next) {
+    let newOrder = new Order({ ...req.body });
+
+    // check user then save order or send error
+    User.findOne({ _id: req.body.user }, (err, data) => {
+        if (err) {
+            res.json({ err: 'User not exist!' })
+        } else {
+            try {
+                const result = newOrder.save();
+                res.status(200).json({
+                    message: 'Order successfully done!'
+                })
+            } catch (err) {
+                res.status(500).json({
+                    errors: {
+                        common: {
+                            msg: 'Order failed!'
+                        }
+                    }
+                })
             }
-        })
-    }
+        }
+    });
 
 }
 
@@ -34,7 +42,7 @@ const allOrder = async (req, res, next) => {
 
 // find specific user order
 const oneUserAllOrder = async (req, res, next) => {
-    const resultOneUser = await Order.find({ user : req.params.id});
+    const resultOneUser = await Order.find({ user: req.params.id });
     res.status(200).json({
         orderList: resultOneUser
     })
